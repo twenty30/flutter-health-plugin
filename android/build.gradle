@@ -25,7 +25,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    namespace 'health.twenty30.twenty30'
+    namespace 'htd.plugins.health'
     compileSdk 34
 
     sourceSets {
