@@ -61,7 +61,8 @@ const val MMOLL_2_MGDL = 18.0 // 1 mmoll= 18 mgdl
 // The minimum android level that can use Health Connect
 const val MIN_SUPPORTED_SDK = Build.VERSION_CODES.O_MR1
 
-class HealthPlugin(private var channel: MethodChannel? = null) :
+class HealthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
+    private lateinit var channel: MethodChannel,
     MethodCallHandler,
     ActivityResultListener,
     Result,
@@ -2203,4 +2204,5 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
         // "Weight" to WeightRecord::class,
         // "WheelchairPushes" to WheelchairPushesRecord::class,
     )
+}
 }
