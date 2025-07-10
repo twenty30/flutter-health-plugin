@@ -354,15 +354,15 @@ class HealthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, ActivityRe
     }
 
 
-    override fun success(p0: Any?) {
+     fun success(p0: Any?) {
         handler?.post { mResult?.success(p0) }
     }
 
-    override fun notImplemented() {
+     fun notImplemented() {
         handler?.post { mResult?.notImplemented() }
     }
 
-    override fun error(
+     fun error(
         errorCode: String,
         errorMessage: String?,
         errorDetails: Any?,
