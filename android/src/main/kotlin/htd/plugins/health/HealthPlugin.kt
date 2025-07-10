@@ -2180,4 +2180,3 @@ class HealthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, ActivityRe
         // "WheelchairPushes" to WheelchairPushesRecord::class,
     )
 }
-}
