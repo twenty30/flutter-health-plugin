@@ -44,7 +44,6 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.ActivityResultListener
-import io.flutter.plugin.common.PluginRegistry.Registrar
 import kotlinx.coroutines.*
 import java.time.*
 import java.time.temporal.ChronoUnit
@@ -61,13 +60,8 @@ const val MMOLL_2_MGDL = 18.0 // 1 mmoll= 18 mgdl
 // The minimum android level that can use Health Connect
 const val MIN_SUPPORTED_SDK = Build.VERSION_CODES.O_MR1
 
-class HealthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
-    private lateinit var channel: MethodChannel,
-    MethodCallHandler,
-    ActivityResultListener,
-    Result,
-    ActivityAware,
-    FlutterPlugin {
+class HealthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, ActivityResultListener {
+    private lateinit var channel: MethodChannel
     private var mResult: Result? = null
     private var handler: Handler? = null
     private var activity: Activity? = null
@@ -353,7 +347,7 @@ class HealthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-        channel = null
+        channel.setMethodCallHandler(null)
         activity = null
         threadPoolExecutor!!.shutdown()
         threadPoolExecutor = null
@@ -489,7 +483,7 @@ class HealthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             Field.FORMAT_FLOAT -> if (!isGlucose) value.asFloat() else value.asFloat() * MMOLL_2_MGDL
             Field.FORMAT_INT32 -> value.asInt()
             Field.FORMAT_STRING -> value.asString()
-            else -> Log.e("Unsupported format:", value.format.toString())
+            else -> throw IllegalStateException("Unsupported field format: ${value.format}")
         }
     }
 
