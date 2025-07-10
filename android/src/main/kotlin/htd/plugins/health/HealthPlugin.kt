@@ -371,10 +371,10 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
         @Suppress("unused")
         @JvmStatic
         fun registerWith(registrar: Registrar) {
-            val channel = MethodChannel(registrar.messenger(), CHANNEL_NAME)
-            val plugin = HealthPlugin(channel)
-            registrar.addActivityResultListener(plugin)
-            channel.setMethodCallHandler(plugin)
+            // val channel = MethodChannel(registrar.messenger(), CHANNEL_NAME)
+            // val plugin = HealthPlugin(channel)
+            // registrar.addActivityResultListener(plugin)
+            // channel.setMethodCallHandler(plugin)
         }
     }
 
