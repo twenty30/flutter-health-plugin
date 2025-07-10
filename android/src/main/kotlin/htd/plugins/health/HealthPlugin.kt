@@ -367,16 +367,16 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
     // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
     // depending on the user's project. onAttachedToEngine or registerWith must both be defined
     // in the same class.
-    companion object {
-        @Suppress("unused")
-        @JvmStatic
-        fun registerWith(registrar: Registrar) {
-            // val channel = MethodChannel(registrar.messenger(), CHANNEL_NAME)
-            // val plugin = HealthPlugin(channel)
-            // registrar.addActivityResultListener(plugin)
-            // channel.setMethodCallHandler(plugin)
-        }
-    }
+    // companion object {
+    //     @Suppress("unused")
+    //     @JvmStatic
+    //     fun registerWith(registrar: Registrar) {
+    //         // val channel = MethodChannel(registrar.messenger(), CHANNEL_NAME)
+    //         // val plugin = HealthPlugin(channel)
+    //         // registrar.addActivityResultListener(plugin)
+    //         // channel.setMethodCallHandler(plugin)
+    //     }
+    // }
 
     override fun success(p0: Any?) {
         handler?.post { mResult?.success(p0) }
